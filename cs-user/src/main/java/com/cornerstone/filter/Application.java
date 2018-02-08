@@ -1,4 +1,4 @@
-package com.cornerstone;
+package com.cornerstone.filter;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -12,8 +12,8 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @SpringBootApplication
 @EnableAutoConfiguration
-@ComponentScan  //不配置路径就是当前包下
-//@ComponentScan(basePackages = {"com.cornerstone"})
+//@ComponentScan  //不配置路径就是当前包下
+@ComponentScan(basePackages = {"com.cornerstone"})
 public class Application {
 
     public static void main(String[] args) {

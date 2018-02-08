@@ -1,7 +1,9 @@
 package com.cornerstone.controller;
 
+import java.util.ArrayList;
 import java.util.Map;
 
+import com.cornerstone.domain.Result;
 import com.google.common.collect.Maps;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,5 +27,18 @@ public class HelloTest {
         //HashSet<Object> objects = Sets.newHashSet();
         map.put("content", "hello freewolf~");
         return map;
+    }
+
+
+    @GetMapping("/users")
+    @ResponseBody
+    public Result userList(){
+        ArrayList<String> users =  new ArrayList<String>(){{
+            add("freewolf");
+            add("tom");
+            add("jerry");
+        }};
+
+        return new Result(0,"",users);
     }
 }
