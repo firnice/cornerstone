@@ -16,15 +16,11 @@
     <name>cornerstone-project</name>
     <modules>
         <module>cs-user</module>
+        <module>cs-user-test1</module>
     </modules>
-    <properties>
-        <!--<spring-cloud.version>Dalston.SR4</spring-cloud.version>-->
-    </properties>
+ 
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
+       
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -34,6 +30,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
+       
     </dependencies>
 
     <dependencyManagement>
@@ -53,6 +50,24 @@
                 <artifactId>json</artifactId>
                 <version>20171018</version>
             </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-thymeleaf</artifactId>
+                <version>1.5.10.RELEASE</version>
+
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>1.5.10.RELEASE</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-test</artifactId>
+                <version>5.0.1.RELEASE</version>
+                <scope>test</scope>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
     <build>

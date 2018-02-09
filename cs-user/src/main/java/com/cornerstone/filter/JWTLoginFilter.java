@@ -26,13 +26,10 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
  */
 public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
 
-
-
     public JWTLoginFilter(String url, AuthenticationManager authManager) {
         super(new AntPathRequestMatcher(url));
         setAuthenticationManager(authManager);
     }
-
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws AuthenticationException, IOException, ServletException {
@@ -51,15 +48,18 @@ public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
     @Override
     protected void successfulAuthentication(
         HttpServletRequest req,
-        HttpServletResponse res, FilterChain chain,
+        HttpServletResponse res,
+        FilterChain chain,
         Authentication auth) throws IOException, ServletException {
 
         TokenAuthenticationService.addAuthentication(res, auth.getName());
     }
 
-
     @Override
-    protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {
+    protected void unsuccessfulAuthentication(
+        HttpServletRequest request,
+        HttpServletResponse response,
+        AuthenticationException failed) throws IOException, ServletException {
 
         response.setContentType("application/json");
         response.setStatus(HttpServletResponse.SC_OK);
