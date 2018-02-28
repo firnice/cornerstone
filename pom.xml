@@ -17,7 +17,6 @@
     <modules>
         <module>cs-user</module>
         <module>cs-user-test1</module>
-        <module>cs-test</module>
         <module>cs-consul</module>
     </modules>
  
