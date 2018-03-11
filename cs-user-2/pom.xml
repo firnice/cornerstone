@@ -8,7 +8,7 @@
         <artifactId>cornerstone-project</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <artifactId>cs-user</artifactId>
+    <artifactId>cs-user-2</artifactId>
     <packaging>jar</packaging>
     <dependencies>
         <dependency>
@@ -28,9 +28,8 @@
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
         <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt</artifactId>
-            <version>0.7.0</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
     </dependencies>
 
