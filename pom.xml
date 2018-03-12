@@ -18,6 +18,7 @@
         <module>cs-user</module>
         <module>cs-user-test1</module>
         <module>cs-consul</module>
+        <module>cs-client</module>
         <module>cs-user-2</module>
     </modules>
  <!---->
