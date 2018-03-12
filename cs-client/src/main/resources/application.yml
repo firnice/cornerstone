@@ -2,12 +2,14 @@ server:
   port: 8081
 
 
-security:
-  oauth2:
-    resource:
-      userInfoUri: http://localhost:8080/user
-    client:
-      client-id: cs-client
-#      access-token-uri: http://localhost:8787
-  enable-csrf: false
-  ignored: /api/**
+jedis :
+  pool :
+    host : 127.0.0.1
+    port : 6379
+    config :
+      maxTotal: 100
+      maxIdle: 10
+      maxWaitMillis : 100000
+
+
+
