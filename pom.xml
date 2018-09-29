@@ -12,7 +12,14 @@
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.0.5.RELEASE</version>
     </parent>
-
+    <properties>
+        <mysql.version>5.1.38</mysql.version>
+        <swagger2.version>2.9.2</swagger2.version>
+        <druid.version>1.0.11</druid.version>
+        <mybatis-spring-boot.version>1.1.1</mybatis-spring-boot.version>
+        <logstash-logback-encoder>4.11</logstash-logback-encoder>
+        <shiro>1.3.2</shiro>
+    </properties>
     <modules>
         <module>cs-console</module>
     </modules>
@@ -29,25 +36,30 @@
     </repositories>
 
 
-
-    <dependencies>
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.boot</groupId>-->
-            <!--<artifactId>spring-boot-starter-web</artifactId>-->
-        <!--</dependency>-->
-    </dependencies>
-
-    <!--<dependencyManagement>-->
+    <dependencyManagement>
+        <dependencies>
+            <!-- Swagger -->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${swagger2.version}</version>
+            </dependency>
+        </dependencies>
         <!--<dependencies>-->
-            <!--<dependency>-->
-                <!--<groupId>org.springframework.cloud</groupId>-->
-                <!--<artifactId>spring-cloud-dependencies</artifactId>-->
-                <!--<version>Camden.SR5</version>-->
-                <!--<type>pom</type>-->
-                <!--<scope>import</scope>-->
-            <!--</dependency>-->
+        <!--<dependency>-->
+        <!--<groupId>org.springframework.cloud</groupId>-->
+        <!--<artifactId>spring-cloud-dependencies</artifactId>-->
+        <!--<version>Camden.SR5</version>-->
+        <!--<type>pom</type>-->
+        <!--<scope>import</scope>-->
+        <!--</dependency>-->
         <!--</dependencies>-->
-    <!--</dependencyManagement>-->
+    </dependencyManagement>
 
     <build>
         <plugins>
