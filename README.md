@@ -1,11 +1,8 @@
-# cornerstone
-技术集合
+# 目的
+技术集合，个人兴趣
 
-### 用户模块
-通过spring-security实现OAuth2.0认证
-
-### cs-client
-用户模块的使用方
+## 技术选型
+- 核心框架 :Spring Boot
 
  
 
