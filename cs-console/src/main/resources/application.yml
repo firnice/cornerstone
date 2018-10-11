@@ -1,0 +1,28 @@
+server:
+  port: 7001
+  display-name: cs-console
+#  context-path: /cs/console
+
+mybatis:
+  mapperLocations: classpath:mybatis/*.xml
+
+
+
+spring:
+  http:
+    multipart:
+      maxFileSize: 100Mb
+      maxRequestSize: 1000Mb
+
+#设置为LEGACYHTML5编码格式
+spring.thymeleaf.mode: LEGACYHTML5
+
+#配置项目的HTML路径
+spring.thymeleaf.prefix: classpath:/templates/
+#后缀
+spring.thymeleaf.suffix: .html
+#会开启严格的HTML格式检查，因此如果想要关闭它，就将其值设置为LEGACYHTML5
+spring.thymeleaf.encoding: UTF-8
+#spring.thymeleaf.content-type: text/html
+# 关闭了换从，从而支持热部署
+spring.thymeleaf.cache: false
