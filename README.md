@@ -4,7 +4,7 @@
 ## 技术选型
 框架 :
  - Spring Boot
- - thymeleaf
+ - thymeleaf(以后前后端分离)
  
 ## 功能
 - 权限管理系统
