@@ -1,4 +1,4 @@
-package com.cs.console.aops;
+package com.cs.console.service.aops;
 
 
 import com.google.common.collect.Maps;
