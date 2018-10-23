@@ -1,13 +1,17 @@
 package com.cs.console.service.aops;
 
 
+import com.cs.console.infrastructure.annotations.RateLimitAspect;
 import com.google.common.collect.Maps;
 import com.google.common.util.concurrent.RateLimiter;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -15,42 +19,53 @@ import org.springframework.stereotype.Component;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 @Component
 @Scope
 @Aspect
 public class RateLimitAop {
 
+    private static final Logger logger = LoggerFactory.getLogger(RateLimitAop.class);
+
+
     @Autowired
     private HttpServletResponse response;
 
-    //业务设置在这里明显不好
-    private RateLimiter rateLimiter = RateLimiter.create(5.0); //比如说，我这里设置"并发数"为5
+    Map<String, RateLimiter> rateLimiterMap = new HashMap<>();
 
-    @Pointcut("@annotation(com.cs.console.infrastructure.annotations.RateLimitAspect)")
-    public void serviceLimit() {
 
+    public RateLimiter getRateLimiter(String name, double permitsPerSecond) {
+        if (rateLimiterMap.containsKey(name)) {
+            return rateLimiterMap.get(name);
+        } else {
+            RateLimiter rateLimiter = RateLimiter.create(permitsPerSecond);
+            rateLimiterMap.put(name, rateLimiter);
+            return rateLimiter;
+        }
     }
 
-    @Around("serviceLimit()")
-    public Object around(ProceedingJoinPoint joinPoint) {
-        Boolean flag = rateLimiter.tryAcquire();
+
+    @Around(value = "@annotation(rateLimitAspect)")
+    public Object around(ProceedingJoinPoint joinPoint, RateLimitAspect rateLimitAspect) {
+        Boolean flag = getRateLimiter(rateLimitAspect.name(), rateLimitAspect.permitsPerSecond()).tryAcquire();
         Object obj = null;
         try {
             if (flag) {
                 obj = joinPoint.proceed();
-            }else{
+            } else {
                 Map map = Maps.newHashMap();
-                map.put("code",100);
-                map.put("message","failure");
+                map.put("code", 100);
+                map.put("message", "failure");
                 String result = JSONObject.valueToString(map);
                 output(response, result);
             }
         } catch (Throwable e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
         }
-        System.out.println("flag=" + flag + ",obj=" + obj);
+        logger.info("flag=" + flag + ",obj=" + obj);
         return obj;
     }
 
